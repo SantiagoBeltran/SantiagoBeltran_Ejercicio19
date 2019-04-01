@@ -33,11 +33,6 @@ sigma_i=np.zeros(p)
 for i in range(p):
     sigma_i[i]=sigmamatrix[i,i]
 sigma_i=np.sqrt(sigma_i)
-#MSE=SSE[0,0]/(n-p-1)
-# Calculamos el MSR
-#MSR=SSR[0,0]/p
-# Calculamos el MST
-#MST=SST[0,0]/(n-1)
 F=(Rsq*(n-p-1))/((1-Rsq)*p)
 
 Rango=0.9 # se define un rango, es decir cuanto porcentaje de la curva se quiere
@@ -64,7 +59,6 @@ if F > Ftest:
     beta1_new=np.matmul(Inv_new,X_newT)
     beta_new=np.matmul(beta1_new,Y)
     Hhat_new=np.matmul(X_new,beta1_new)
-    #Yideal_new=np.matmul(X_new,beta_new)
 
     SST1_new=np.matmul(np.identity(n)-(1.0/n)*np.ones((n,n)),Y)
     SST_new=np.matmul(YT,SST1_new)
@@ -74,17 +68,6 @@ if F > Ftest:
     SSE_new=np.matmul(YT,SSE1_new)
     Rsq_new=SSR_new[0,0]/SST_new[0,0]
     
-    #sigma2_new=SSE_new[0,0]/(n-1.)
-    #sigmamatrix_new=sigma2_new*Inv_new
-    #sigma_i_new=np.zeros(p)
-    #for i in range(p):
-    #    sigma_i_new[i]=sigmamatrix_new[i,i]
-    #sigma_i_new=np.sqrt(sigma_i_new)
-    #MSE_new=SSE_new[0,0]/(n-p-1)
-    # Calculamos el MSR
-    #MSR_new=SSR_new[0,0]/p
-    # Calculamos el MST
-    #MST_new=SST_new[0,0]/(n-1)
     F_new=(Rsq_new*(n-p-1))/((1-Rsq_new)*p)
     print(Rsq,F,Rsq_new,F_new)
 else:
